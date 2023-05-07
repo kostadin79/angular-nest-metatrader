@@ -1,0 +1,56 @@
+version: "3"
+services:
+  angular:
+    environment:
+      PORT: 4000
+    container_name: angular
+    build:
+      context: "https://github.com/kostadin79/angular-meta-trader.git#main:"
+      dockerfile: "Dockerfile"
+    ports:
+      - "4000:4000"
+    networks:
+      - internal
+    depends_on:
+      - nest
+  nginx:
+    container_name: nginx
+    build:
+      context: "https://github.com/kostadin79/angular-meta-trader.git#main:"
+      dockerfile: "nginx/Dockerfile"
+      args:
+        WS_SOCKET_URL: "rcdsolutions.online:8888"
+        PUBLIC_URL: "rcdsolutions.online www.rcdsolutions.online"
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - internal
+    depends_on:
+      - angular
+    volumes:
+      - ssl:/etc/nginx/certs:ro
+  nest:
+    environment:
+      API_KEY: "CHANGEME"
+      REQ_URL: "tcp://192.168.1.71:5555"
+      PULL_URL: "tcp://192.168.1.71:5556"
+      SSL: "true"
+    container_name: nest
+    build:
+      context: "https://github.com/kostadin79/nest-meta-trader.git#main:"
+      dockerfile: "Dockerfile"
+      args:
+        SSL: "true"
+    ports:
+      - "8888:8888"
+    networks:
+      - internal
+    volumes:
+      - ssl:/app/certs:ro
+networks:
+  internal:
+    driver: bridge
+volumes:
+  ssl:
+    external: true
