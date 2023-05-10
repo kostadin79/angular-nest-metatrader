@@ -20,3 +20,9 @@ The domain is required for SSL certificate. Without SSL certificate the Angular 
 5. Change API_KEY with your password in MetaTrader4Bridge2.mq4
 6. Change REQ_URL with MetaTrader terminal ip address
 7. Change PULL_URL with MetaTrader terminal ip address
+
+## Links
+
+[Meta Trader 4 with NestJS Socket Gateway](https://github.com/kostadin79/nest-meta-trader)
+
+[Angular UI for MetaTrader with NestJS](https://github.com/kostadin79/angular-meta-trader)
