@@ -4,6 +4,12 @@
 
 ![Angular Dashboard for Meta Trader 4 terminal](https://github.com/kostadin79/angular-nest-metatrader/blob/main/AngularNestMetaTrader.svg)
 
+## Demo
+
+Project demo URL: [https://rcdsolutions.online](https://rcdsolutions.online)
+"rcdsolutions.online" is a domain for demo purposes of my personal project.
+The domain is required for SSL certificate. Without SSL certificate the Angular service worker cannot be registered.
+
 ## Requirements before `docker compose up`
 
 1. MetaTrader4 terminal must be started with MetaTrader4Bridge2.mq4 activated.
